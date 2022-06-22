@@ -1,0 +1,8 @@
+.Header {
+  display: block;
+  width: 100%;
+  height: 70px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: rgb(0, 119, 255);
+}

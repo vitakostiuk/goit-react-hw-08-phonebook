@@ -1,0 +1,31 @@
+.Navigation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.Wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 100px;
+}
+
+.Link {
+  display: block;
+  text-align: center;
+  padding-right: 10px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.Active {
+  display: block;
+  padding-right: 10px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 500;
+  color: #ffffff;
+}

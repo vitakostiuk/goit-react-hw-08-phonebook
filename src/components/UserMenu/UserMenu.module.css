@@ -1,0 +1,38 @@
+.Container {
+  display: flex;
+  margin-left: 50px;
+  align-items: center;
+}
+
+.FormBtn {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: none;
+  background-color: #fff;
+  color: #1a1a1a;
+  font-weight: 500;
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.75);
+  font-size: 15px;
+}
+
+.FormBtn:hover {
+  background-color: #1ea34a;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.Link {
+  display: block;
+  text-align: center;
+  margin-left: 10px;
+  padding-right: 10px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 500;
+}
