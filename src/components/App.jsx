@@ -1,6 +1,8 @@
-import { lazy, Suspense } from 'react';
-import { useState } from 'react';
+import { BallTriangle } from 'react-loader-spinner';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { authOperations, authSelectors } from 'redux/auth';
 import ContactForm from './ContactForm';
 import { Container } from './Container';
 import Modal from './Modal';
@@ -28,9 +30,28 @@ const LoginPage = lazy(() =>
 export const App = () => {
   const [showModal, setShowModal] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const isLoadingUser = useSelector(authSelectors.getLoadingUser);
+
+  useEffect(() => {
+    dispatch(authOperations.getUser());
+  }, [dispatch]);
+
   const toggleModal = () => {
     setShowModal(!showModal);
   };
+
+  if (isLoadingUser) {
+    return (
+      <BallTriangle
+        height="50"
+        width="50"
+        color="#0077ff"
+        ariaLabel="loading"
+      />
+    );
+  }
 
   return (
     <>
@@ -40,7 +61,16 @@ export const App = () => {
           <h2 className={s.Title}>Phonebook</h2>
           <ContactForm />
         </>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <BallTriangle
+              height="50"
+              width="50"
+              color="#0077ff"
+              ariaLabel="loading"
+            />
+          }
+        >
           <Routes>
             <Route path="/" element={<ContactsPage />}></Route>
 
@@ -49,7 +79,7 @@ export const App = () => {
               element={
                 showModal && (
                   <Modal onKeyDown={toggleModal}>
-                    <RegisterPage />
+                    <RegisterPage toggleModal={toggleModal} />
                   </Modal>
                 )
               }
@@ -60,7 +90,7 @@ export const App = () => {
               element={
                 showModal && (
                   <Modal onKeyDown={toggleModal}>
-                    <LoginPage />
+                    <LoginPage toggleModal={toggleModal} />
                   </Modal>
                 )
               }

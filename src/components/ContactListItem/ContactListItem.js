@@ -15,6 +15,14 @@ const ContactListItem = ({ contacts, onDeleteContact }) => (
         >
           Delete
         </button>
+
+        <button
+          type="button"
+          className={s.Btn}
+          // onClick={() => onEditContact(name, number)}
+        >
+          Edit
+        </button>
       </li>
     ))}
   </>

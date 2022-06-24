@@ -19,3 +19,16 @@
   border-radius: 3px;
   box-shadow: 10px 10px 8px 2px rgba(0, 0, 0, 0.3);
 }
+
+.CloseBtn {
+  position: absolute;
+  top: 3px;
+  right: 1px;
+  background-color: #fff;
+  cursor: pointer;
+  border: none;
+  fill: #1a1a1a;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}

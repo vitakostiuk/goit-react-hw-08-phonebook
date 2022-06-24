@@ -1,13 +1,16 @@
 import { React, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { authSelectors } from 'redux/auth';
 import {
   deleteContact,
   getContacts,
+  // editContact
 } from '../../redux/phonebook/phonebook-operations';
 import ContactListItem from '../ContactListItem';
 import s from './ContactList.module.css';
 
 const ContactList = () => {
+  const token = useSelector(authSelectors.getToken);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,9 +23,17 @@ const ContactList = () => {
 
   const onDeleteContact = id => dispatch(deleteContact(id));
 
+  // const onEditContact = ({name, number}) => dispatch(editContact({name, number}));
+
   return (
     <ul className={s.List}>
-      <ContactListItem contacts={contacts} onDeleteContact={onDeleteContact} />
+      {token && (
+        <ContactListItem
+          contacts={contacts}
+          onDeleteContact={onDeleteContact}
+          // onEditContact={onEditContact}
+        />
+      )}
     </ul>
   );
 };
