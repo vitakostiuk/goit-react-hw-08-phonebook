@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/NotFoundPage.cc28a302.chunk.js","mappings":"sKAUA,UARiB,WACf,OACE,+BACE,SAAC,IAAD","sources":["components/pages/NotFoundPage.js"],"sourcesContent":["import ContactForm from '../ContactForm';\n\nconst NotFound = () => {\n  return (\n    <>\n      <ContactForm />\n    </>\n  );\n};\n\nexport default NotFound;\n"],"names":[],"sourceRoot":""}
