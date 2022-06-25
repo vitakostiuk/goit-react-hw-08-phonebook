@@ -1,9 +1,9 @@
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { MdClose } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import s from './StylesModalForm.module.css';
 import { authOperations, authSelectors } from 'redux/auth';
@@ -92,6 +92,9 @@ const RegisterPage = ({ toggleModal }) => {
         </form>
       </div>
       <ToastContainer />
+      <button className={s.CloseBtn} onClick={toggleModal}>
+        <MdClose size="24" />
+      </button>
     </>
   );
 };

@@ -17,19 +17,22 @@ const addItem = (endpoint, item, options = {}) => {
   return fetchData(endpoint, finalOptions);
 };
 
-// const editItem = (endpoint, item, options = {}) => {
-//   const finalOptions = {
-//     method: 'PUT',
-//     body: JSON.stringify(item),
-//     headers: {
-//       'Content-Type': 'application/json; charset=UTF-8',
-//     },
-//     ...options,
-//   };
-//   return fetchData(`${endpoint}/${item.id}`, finalOptions);
-// };
+const editItem = (endpoint, item, options = {}) => {
+  const finalItem = {
+    name: item.name,
+    number: item.number,
+  };
+  console.log('finalItem', finalItem);
+  const finalOptions = {
+    method: 'PATCH',
+    body: JSON.stringify(finalItem),
+    ...options,
+  };
+  console.log('finalOptions.body', finalOptions.body);
+  return fetchData(`${endpoint}/${item.id}`, finalOptions);
+};
 
 const deleteItem = (endpoint, id, options = {}) =>
   fetchData(`${endpoint}/${id}`, { method: 'DELETE', ...options });
 
-export { getData, addItem, deleteItem };
+export { getData, addItem, editItem, deleteItem };

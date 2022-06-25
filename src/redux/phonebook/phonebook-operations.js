@@ -1,5 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { addItem, deleteItem, getData } from '../../../src/services/api';
+import {
+  addItem,
+  editItem,
+  deleteItem,
+  getData,
+} from '../../../src/services/api';
 const API_ENDPOINT = 'contacts';
 
 const getContacts = createAsyncThunk(
@@ -58,21 +63,30 @@ const addContact = createAsyncThunk(
   }
 );
 
-// const editContact = () => createAsyncThunk(
-//   'contacts/editContact',
-//   async ({ name, number }, { rejectWithValue, getState }) => {
-//     // const contact = {
-//     //   name,
-//     //   number,
-//     // };
+const editContact = createAsyncThunk(
+  'contacts/editContact',
+  async (updatedContact, { rejectWithValue, getState }) => {
+    console.log('updatedContact', updatedContact);
 
-//     try {
-
-//     } catch (error) {
-
-//     }
-//   }
-// )
+    try {
+      const persistedToken = getState().auth.token;
+      const contacts = getState().phonebook.contacts;
+      console.log('contacts', contacts);
+      const options = {
+        headers: {
+          Authorization: persistedToken,
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      };
+      const data = await editItem(API_ENDPOINT, updatedContact, options);
+      console.log('data', data);
+      return contacts.map(contact => (contact.id === data.id ? data : contact));
+      // return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
 
 const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
@@ -97,12 +111,7 @@ const deleteContact = createAsyncThunk(
 );
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export {
-  addContact,
-  // editContact,
-  deleteContact,
-  getContacts,
-};
+export { addContact, editContact, deleteContact, getContacts };
 //
 //
 //------With vanila async request redux-thunk-------------

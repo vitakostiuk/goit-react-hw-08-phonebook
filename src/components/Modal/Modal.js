@@ -1,10 +1,10 @@
 import React from 'react';
-import { MdClose } from 'react-icons/md';
+// import { MdClose } from 'react-icons/md';
 // import { useEffect } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import s from './Modal.module.css';
 
-const Modal = ({ onKeyDown, children }) => {
+const Modal = ({ children }) => {
   // useEffect(() => {
   // --------Обработка закрытия модалки - клик по Escape
   // const handleKeyDown = e => {
@@ -29,9 +29,9 @@ const Modal = ({ onKeyDown, children }) => {
   // };
 
   // --------Обработка закрытия модалки - клик по кнопке Close
-  const handleCloseBtn = () => {
-    onKeyDown();
-  };
+  // const handleCloseBtn = () => {
+  //   onKeyDown();
+  // };
 
   return (
     <div
@@ -39,17 +39,19 @@ const Modal = ({ onKeyDown, children }) => {
       // onClick={handleBackdropClick}
     >
       <div className={s.Modal}>
-        <button className={s.CloseBtn} onClick={handleCloseBtn}>
+        {/* <button 
+          className={s.CloseBtn} 
+          onClick={handleCloseBtn}>
           <MdClose size="24" />
-        </button>
+        </button> */}
         {children}
       </div>
     </div>
   );
 };
 
-Modal.propTypes = {
-  onKeyDown: PropTypes.func,
-};
+// Modal.propTypes = {
+//   onKeyDown: PropTypes.func,
+// };
 
 export default Modal;

@@ -3,7 +3,7 @@ import { lazy, Suspense, useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
-import ContactForm from './ContactForm';
+// import ContactForm from './ContactForm';
 import { Container } from './Container';
 import Modal from './Modal';
 // import Contacts from './pages/Contacts';
@@ -11,7 +11,7 @@ import Modal from './Modal';
 // import RegisterPage from './pages/RegisterPage';
 // import LoginPage from './pages/LoginPage';
 import { Header } from './Header';
-import s from '../components/App.module.css';
+// import s from '../components/App.module.css';
 
 //  ДИНАМИЧЕСКИЙ ИМПОРТ
 const ContactsPage = lazy(() =>
@@ -57,10 +57,10 @@ export const App = () => {
     <>
       <Header toggleModal={toggleModal} />
       <Container>
-        <>
+        {/* <>
           <h2 className={s.Title}>Phonebook</h2>
           <ContactForm />
-        </>
+        </> */}
         <Suspense
           fallback={
             <BallTriangle
@@ -78,7 +78,7 @@ export const App = () => {
               path="/register"
               element={
                 showModal && (
-                  <Modal onKeyDown={toggleModal}>
+                  <Modal>
                     <RegisterPage toggleModal={toggleModal} />
                   </Modal>
                 )

@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
-import { getContacts, addContact, deleteContact } from './phonebook-operations';
+import {
+  getContacts,
+  addContact,
+  editContact,
+  deleteContact,
+} from './phonebook-operations';
 import { changeFilter } from './phonebook-actions';
 import { createReducer } from '@reduxjs/toolkit';
 
@@ -7,6 +12,10 @@ const contacts = createReducer([], {
   [getContacts.fulfilled]: (_, { payload }) => payload,
 
   [addContact.fulfilled]: (state, { payload }) => [...state, payload],
+
+  [editContact.fulfilled]: (_, { payload }) => {
+    return payload;
+  },
 
   [deleteContact.fulfilled]: (_, { payload }) => {
     return payload;
@@ -21,6 +30,10 @@ const loading = createReducer(false, {
   [addContact.pending]: () => true,
   [addContact.fulfilled]: () => false,
   [addContact.rejected]: () => false,
+
+  [editContact.pending]: () => true,
+  [editContact.fulfilled]: () => false,
+  [editContact.rejected]: () => false,
 
   [deleteContact.pending]: () => true,
   [deleteContact.fulfilled]: () => false,

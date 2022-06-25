@@ -51,8 +51,8 @@
 
 .CloseBtn {
   position: absolute;
-  top: 3px;
-  right: 1px;
+  top: 0;
+  right: 0;
   background-color: #fff;
   cursor: pointer;
   border: none;
