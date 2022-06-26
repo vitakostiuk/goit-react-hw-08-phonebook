@@ -1,3 +1,6 @@
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
@@ -23,12 +26,12 @@ const LoginPage = ({ toggleModal }) => {
 
   useEffect(() => {
     if (!error) return;
-    alert('Invalid email!');
+    toast.error('Invalid email!');
   }, [error]);
 
   useEffect(() => {
     if (userEmail) {
-      alert('You are enter into your profile!');
+      // alert('You are enter into your profile!');
       toggleModal();
     }
   }, [toggleModal, userEmail]);
@@ -72,6 +75,7 @@ const LoginPage = ({ toggleModal }) => {
           </button>
         </form>
       </div>
+      <ToastContainer />
       <button className={s.CloseBtn} onClick={toggleModal}>
         <MdClose size="24" />
       </button>

@@ -47,6 +47,9 @@ const error = createReducer(false, {
   [addContact.pending]: () => null,
   [addContact.rejected]: (_, { payload }) => payload,
 
+  [editContact.pending]: () => null,
+  [editContact.rejected]: (_, { payload }) => payload,
+
   [deleteContact.pending]: () => null,
   [deleteContact.rejected]: (_, { payload }) => payload,
 });

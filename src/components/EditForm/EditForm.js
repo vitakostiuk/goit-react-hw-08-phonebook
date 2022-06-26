@@ -41,6 +41,7 @@ const EditForm = ({ nameForEdit, numberForEdit, id, toggleModal }) => {
     };
 
     dispatch(editContact(updatedContact));
+    toggleModal();
   };
 
   return (
