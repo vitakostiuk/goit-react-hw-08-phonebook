@@ -1,6 +1,6 @@
 import { BallTriangle } from 'react-loader-spinner';
 import { lazy, Suspense, useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
 // import ContactForm from './ContactForm';
@@ -33,6 +33,7 @@ export const App = () => {
   const dispatch = useDispatch();
 
   const isLoadingUser = useSelector(authSelectors.getLoadingUser);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   useEffect(() => {
     dispatch(authOperations.getUser());
@@ -57,10 +58,6 @@ export const App = () => {
     <>
       <Header toggleModal={toggleModal} />
       <Container>
-        {/* <>
-          <h2 className={s.Title}>Phonebook</h2>
-          <ContactForm />
-        </> */}
         <Suspense
           fallback={
             <BallTriangle
@@ -72,28 +69,52 @@ export const App = () => {
           }
         >
           <Routes>
-            <Route path="/" element={<ContactsPage />}></Route>
-
+            {/* AUTH */}
             <Route
-              path="/register"
+              path="/"
               element={
-                showModal && (
-                  <Modal>
-                    <RegisterPage toggleModal={toggleModal} />
-                  </Modal>
+                !isLoggedIn ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <ContactsPage />
                 )
               }
             ></Route>
 
+            {/* NOT AUTH */}
+            <Route
+              path="/register"
+              element={
+                isLoggedIn ? (
+                  <Navigate to="/" replace />
+                ) : (
+                  showModal && (
+                    <Modal>
+                      <RegisterPage toggleModal={toggleModal} />
+                    </Modal>
+                  )
+                )
+              }
+            ></Route>
             <Route
               path="/login"
               element={
-                showModal && (
-                  <Modal onKeyDown={toggleModal}>
-                    <LoginPage toggleModal={toggleModal} />
-                  </Modal>
+                isLoggedIn ? (
+                  <Navigate to="/" replace />
+                ) : (
+                  showModal && (
+                    <Modal>
+                      <LoginPage toggleModal={toggleModal} />
+                    </Modal>
+                  )
                 )
               }
+              // element={showModal && (
+              //     <Modal onKeyDown={toggleModal}>
+              //       <LoginPage toggleModal={toggleModal} />
+              //     </Modal>
+              //   )
+              // }
             ></Route>
 
             <Route
