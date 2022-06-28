@@ -21,7 +21,7 @@ export const Navigation = ({ toggleModal }) => {
     <>
       <nav className={s.Navigation}>
         <NavLink
-          to=""
+          to="contacts"
           className={({ isActive }) => (isActive ? s.Active : s.Link)}
           onClick={handleClickContats}
         >

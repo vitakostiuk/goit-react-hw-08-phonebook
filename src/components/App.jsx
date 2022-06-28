@@ -71,7 +71,7 @@ export const App = () => {
           <Routes>
             {/* AUTH */}
             <Route
-              path="/"
+              path="/contacts"
               element={
                 !isLoggedIn ? (
                   <Navigate to="/login" replace />
@@ -86,7 +86,7 @@ export const App = () => {
               path="/register"
               element={
                 isLoggedIn ? (
-                  <Navigate to="/" replace />
+                  <Navigate to="/contacts" replace />
                 ) : (
                   showModal && (
                     <Modal>
@@ -100,7 +100,7 @@ export const App = () => {
               path="/login"
               element={
                 isLoggedIn ? (
-                  <Navigate to="/" replace />
+                  <Navigate to="/contacts" replace />
                 ) : (
                   showModal && (
                     <Modal>
@@ -109,12 +109,6 @@ export const App = () => {
                   )
                 )
               }
-              // element={showModal && (
-              //     <Modal onKeyDown={toggleModal}>
-              //       <LoginPage toggleModal={toggleModal} />
-              //     </Modal>
-              //   )
-              // }
             ></Route>
 
             <Route
