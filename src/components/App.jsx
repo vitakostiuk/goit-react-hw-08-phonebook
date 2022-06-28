@@ -71,7 +71,7 @@ export const App = () => {
           <Routes>
             {/* AUTH */}
             <Route
-              path="/contacts"
+              path="/"
               element={
                 !isLoggedIn ? (
                   <Navigate to="/login" replace />
